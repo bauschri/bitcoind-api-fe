@@ -1,0 +1,33 @@
+{
+  "notifications": {
+    "labels": {
+      "header_mini": "Notifications"
+    }
+  },
+  "signup": {
+    "form": {
+      "email": "Email",
+      "password": "Password",
+      "password_confirmation": "Password Confirmation"
+    }
+  },
+  "total_purchase_orders": {
+    "labels": {
+      "header_recent": "Recent Purchase Orders"
+    }
+  },
+  "supplier": {
+    "labels": {
+      "header_recent": "Recent Suppliers"
+    },
+    "actions": {
+      "create": "Create Supplier"
+    },
+    "form": {
+      "name": "Company Name",
+      "firstname": "Firstname",
+      "lastname": "Lastname",
+      "email": "Email"
+    }
+  }
+}

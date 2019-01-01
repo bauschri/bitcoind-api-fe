@@ -1,0 +1,16 @@
+{
+  "supplier": {
+    "labels": {
+      "header_recent": "Neuste Händler"
+    },
+    "actions": {
+      "create": "Create Supplier"
+    },
+    "form": {
+      "name": "Company Name",
+      "firstname": "Firstname",
+      "lastname": "Lastname",
+      "email": "Email"
+    }
+  }
+}

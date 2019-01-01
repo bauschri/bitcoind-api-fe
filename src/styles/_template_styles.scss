@@ -1,0 +1,109 @@
+/* Links */
+a,
+a:focus,
+a:hover {
+  color: $default-font-color;
+}
+
+/* Custom default button */
+.btn-secondary,
+.btn-secondary:hover,
+.btn-secondary:focus {
+  color: $default-font-color;
+  text-shadow: none; /* Prevent inheritance from `body` */
+  background-color: #fff;
+  border: 0.05rem solid #fff;
+}
+
+/*
+ * Base structure
+ */
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  -ms-flex-pack: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  color: $default-font-color;
+  font-weight: 200;
+
+  header {
+    background-color: white;
+  }
+
+  header #perspective-switch {
+    margin-left: 1em;
+    font-size: 100%;
+  }
+
+  main {
+    .header-navbar {
+      background-color: white;
+      padding: 15px 0 15px 0;
+      margin-bottom: 30px;
+      font-size: 20px;
+      font-weight: 400;
+    }
+  }
+
+  footer {
+    background-color: white;
+  }
+}
+
+.notificationDashboardList{
+  svg {
+    font-size: 20px;
+    margin: 10px 0 0 2px;
+    background-color: transparent;
+  }
+}
+
+.navbar {
+  .nav-link--active {
+    color: $primary-font-color;
+    fill: $primary-font-color;
+  }
+}
+
+.mini-panel {
+  background-color: white !important;
+  /*border: 0.1px solid black;*/
+  margin: 0 0 10px 0;
+
+  .title {
+    color: $primary !important;
+    font-weight: bold;
+  }
+
+  .bg-light {
+    background-color: white !important;
+  }
+
+  .navbar {
+    line-height: 2.6em;
+  }
+}
+
+.nav-link {
+  svg {
+    margin: 5px 10px 5px 0px;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: normal;
+  }
+  span {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: normal;
+  }
+}
+
+.list-group-item {
+  border: none;
+}
