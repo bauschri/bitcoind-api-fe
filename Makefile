@@ -16,7 +16,7 @@ compile:
 	CI=false yarn build
 
 build:
-	docker build --pull -f ./Dockerfile -t cbaus/bitcoind-api:$(NEXT_PATCH_VERSION) ./
+	docker build --pull -f ./Dockerfile -t cbaus/bitcoind-api-fe:$(NEXT_PATCH_VERSION) ./
 	docker push cbaus/bitcoind-api-fe:$(NEXT_PATCH_VERSION)
 	docker tag cbaus/bitcoind-api-fe:$(NEXT_PATCH_VERSION) cbaus/bitcoind-api-fe:latest
 	docker push cbaus/bitcoind-api-fe:latest
