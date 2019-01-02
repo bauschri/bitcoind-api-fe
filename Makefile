@@ -10,6 +10,9 @@ NEXT_MAJOR_VERSION = $(shell expr $(MAJOR) + 1).0.0-b$(BUILD)
 NEXT_MINOR_VERSION = $(MAJOR).$(shell expr $(MINOR) + 1).0-b$(BUILD)
 NEXT_PATCH_VERSION = $(MAJOR).$(MINOR).$(BUILD)
 
+cleanup:
+	find client -name *.css -exec rm -f {} \;
+
 compile:
 	yarn install
 	yarn build-css
@@ -22,5 +25,6 @@ build:
 	docker push cbaus/bitcoind-api-fe:latest
 
 deploy:
+	make cleanup
 	make compile
 	make build
