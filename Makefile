@@ -12,6 +12,7 @@ NEXT_PATCH_VERSION = $(MAJOR).$(MINOR).$(BUILD)
 
 compile:
 	yarn install
+	yarn build-css
 	yarn build
 
 build:
