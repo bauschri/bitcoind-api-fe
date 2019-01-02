@@ -60,7 +60,8 @@ jobs:
           docker_layer_caching: true
       - run:
           name: Install dependencies
-          command: yarn build
+          command: |
+            ENV=${CIRCLE_BRANCH} make compile
       - *save_workspace
 
 

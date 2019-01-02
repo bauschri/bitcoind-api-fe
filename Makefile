@@ -10,6 +10,10 @@ NEXT_MAJOR_VERSION = $(shell expr $(MAJOR) + 1).0.0-b$(BUILD)
 NEXT_MINOR_VERSION = $(MAJOR).$(shell expr $(MINOR) + 1).0-b$(BUILD)
 NEXT_PATCH_VERSION = $(MAJOR).$(MINOR).$(BUILD)
 
+compile:
+	yarn install
+	yarn build
+
 build:
 	docker build --pull -f ./Dockerfile -t cbaus/bitcoind-api:bitcoind-api-fe-$(NEXT_PATCH_VERSION) ./
 	docker push cbaus/bitcoind-api-fe:bitcoind-api-fe-$(NEXT_PATCH_VERSION)
@@ -17,4 +21,5 @@ build:
 	docker push cbaus/bitcoind-api-be-fe:latest
 
 deploy:
+	make compile
 	make build
