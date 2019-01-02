@@ -15,22 +15,13 @@ workflows:
   build_test_deploy:
     jobs:
       - base-install
-      - lint:
+      - compile:
           requires:
             - base-install
       - deploy:
           requires:
             - base-install
-            - lint
-          filters:
-            branches:
-              only:
-                - master
-      - slack_info:
-          requires:
-            - base-install
-            - lint
-            - deploy
+            - compile
           filters:
             branches:
               only:
