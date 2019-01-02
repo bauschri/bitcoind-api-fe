@@ -13,7 +13,7 @@ NEXT_PATCH_VERSION = $(MAJOR).$(MINOR).$(BUILD)
 compile:
 	yarn install
 	yarn build-css
-	yarn build
+	CI=false yarn build
 
 build:
 	docker build --pull -f ./Dockerfile -t cbaus/bitcoind-api:bitcoind-api-fe-$(NEXT_PATCH_VERSION) ./
