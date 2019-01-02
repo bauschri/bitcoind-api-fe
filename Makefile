@@ -11,7 +11,7 @@ NEXT_MINOR_VERSION = $(MAJOR).$(shell expr $(MINOR) + 1).0-b$(BUILD)
 NEXT_PATCH_VERSION = $(MAJOR).$(MINOR).$(BUILD)
 
 cleanup:
-	find client -name *.css -exec rm -f {} \;
+	find ./ -name *.css -exec rm -f {} \;
 
 compile:
 	yarn install
