@@ -1,0 +1,91 @@
+
+restore_workspace: &restore_workspace
+  attach_workspace:
+    at: .
+
+save_workspace: &save_workspace
+  persist_to_workspace:
+    root: .
+    paths:
+      - .
+
+version: 2
+workflows:
+  version: 2
+  build_test_deploy:
+    jobs:
+      - base-install
+      - lint:
+          requires:
+            - base-install
+      - deploy:
+          requires:
+            - base-install
+            - lint
+          filters:
+            branches:
+              only:
+                - master
+      - slack_info:
+          requires:
+            - base-install
+            - lint
+            - deploy
+          filters:
+            branches:
+              only:
+                - master
+
+jobs:
+  base-install:
+    docker:
+      - image: circleci/node:8
+    working_directory: ~/code
+    steps:
+      - checkout
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - run:
+          name: Install Docker Compose
+          command: |
+            curl -L https://github.com/docker/compose/releases/download/1.19.0/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
+            chmod +x ~/docker-compose
+            sudo mv ~/docker-compose /usr/local/bin/docker-compose
+      - restore_cache:
+          keys:
+            - v3-dependencies-{{ checksum "yarn.lock" }}
+      - run:
+          name: Install dependencies
+          command: yarn install
+      - *save_workspace
+
+  compile:
+    docker:
+      - image: circleci/node:8
+    working_directory: ~/code
+    steps:
+      - *restore_workspace
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - run:
+          name: Install dependencies
+          command: yarn build
+      - *save_workspace
+
+
+  deploy:
+    docker:
+      - image: circleci/node:8
+    working_directory: ~/code
+    steps:
+      - *restore_workspace
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - run:
+          name: Deploy Docker Container
+          command: |
+            echo $DOCKER_PWD | docker login -u $DOCKER_LOGIN --password-stdin
+      - run:
+          name: deploy
+          command: |
+            ENV=${CIRCLE_BRANCH} make deploy

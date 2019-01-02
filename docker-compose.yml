@@ -1,0 +1,15 @@
+version: '2'
+services:
+
+  bitcoind-api-fe:
+    image: cbaus/bitcoind-api-fe:latest
+    ports:
+      - "3000:3000"
+    networks:
+      - bitcoind
+    volumes:
+      - .:/usr/src/app
+
+networks:
+  bitcoind:
+    external: true

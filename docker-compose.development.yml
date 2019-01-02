@@ -1,0 +1,20 @@
+version: '2'
+services:
+
+  bitcoind-api-fe:
+    image: bitcoind-api-fe:latest
+    build:
+      context: .
+      dockerfile: $PWD/Dockerfile
+    environment:
+      - DB_HOST=database-internal
+    ports:
+      - "3000:4001"
+    networks:
+      - bitcoind
+    volumes:
+      - .:/usr/src/app
+
+networks:
+  bitcoind:
+    external: true
