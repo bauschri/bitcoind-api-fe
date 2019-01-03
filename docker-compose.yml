@@ -12,6 +12,7 @@ services:
       - bitcoind
     volumes:
       - .:/usr/src/app
+    command: yarn start
 
 networks:
   bitcoind:

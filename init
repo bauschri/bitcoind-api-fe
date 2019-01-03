@@ -4,4 +4,9 @@ if [ ! -d "./node_modules" ]; then
   yarn install
 fi
 
-yarn start
+echo "NODE_ENV " + $NODE_ENV
+
+#if [ $NODE_ENV == "$s2" ]
+#yarn start
+
+serve -s build -l 3000

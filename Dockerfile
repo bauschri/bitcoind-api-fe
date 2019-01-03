@@ -12,6 +12,7 @@ ADD . /usr/src/app
 
 RUN yarn install
 RUN yarn global add node-sass-chokidar
+RUN yarn global add serve
 
 RUN chmod +x /usr/src/app/init
 
