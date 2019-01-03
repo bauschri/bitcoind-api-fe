@@ -6,11 +6,14 @@ import { withNamespaces } from 'react-i18next';
 import { Header, Main, Footer } from './views';
 import { Route, Switch } from 'react-router-dom';
 import socketIOClient from 'socket.io-client'
+import config from 'config';
 
 import {
   BlockTransactionsList,
   SplitChart,
 } from 'components'
+
+const Home = () => (<div>Home</div>)
 
 class AppView extends Component {
   static propTypes = {
@@ -21,21 +24,20 @@ class AppView extends Component {
 
   constructor() {
     super();
-
   }
 
   render() {
     const { i18n } = this.props;
-    const socket = socketIOClient('http://localhost:4001')
+    //const socket = socketIOClient(config.SOCKET_IO_URI)
 
     const changeLanguage = lng => {
       i18n.changeLanguage(lng);
     };
 
-    socket.on('change color', (color) => {
-      console.log('change color')
-      document.body.style.backgroundColor = color
-    })
+    // socket.on('change color', (color) => {
+    //   console.log('change color')
+    //   document.body.style.backgroundColor = color
+    // })
 
     return (
       <div className="container-fluid d-flex h-100 flex-column p-0">
@@ -43,7 +45,8 @@ class AppView extends Component {
 
         <Main>
           <Switch>
-            <Route path="*" exact={true} component={SplitChart} />
+            <Route path="*" exact={true} component={Home} />
+            <Route path="/chart" exact={true} component={SplitChart} />
             <Route path="/transactions" component={BlockTransactionsList} />
           </Switch>
         </Main>
